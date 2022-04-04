@@ -4,14 +4,25 @@
   "description": "variable creator",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.66.0"
+    "vscode": "^1.65.2"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:variable-creator.translateInsert",
-    "onCommand:variable-creator.translate"
+    "onLanguage:vue",
+    "onLanguage:c",
+    "onLanguage:cpp",
+    "onLanguage:css",
+    "onLanguage:html",
+    "onLanguage:json",
+    "onLanguage:markdown",
+    "onLanguage:python",
+    "onLanguage:typescript",
+    "onLanguage:plaintext",
+    "onLanguage:javascript",
+    "onLanguage:java",
+    "onCommand:variable-creator.translateInsert"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -19,50 +30,41 @@
       {
         "command": "variable-creator.translateInsert",
         "title": "Translate & Insert"
-      },
-      {
-        "command": "variable-creator.translate",
-        "title": "Translate"
       }
     ],
     "keybindings": [
       {
         "command": "variable-creator.translateInsert",
-        "key": "alt+t",
+        "key": "alt+o",
         "when": "editorTextFocus"
-      },
-      {
-        "command": "variable-creator.translate",
-        "key": "ctrl+t",
-        "when": "editorHasSelection"
       }
-	],
-	"configuration": {
-		"title": "Translator Helper",
-		"properties": {
-			"variable-creator.api": {
-				"type": "string",
-				"default": "google",
-				"enum": [
-					"google"
-				],
-				"enumDescriptions": [
-					"Google Translation API."
-				],
-				"description": "Specify the api to translate the text."
-			},
-			"variable-creator.sourceLanguage": {
-				"type": "string",
-				"default": "ko",
-				"description": "The source language to be translated."
-			},
-			"variable-creator.targetLanguage": {
-				"type": "string",
-				"default": "en",
-				"description": "The target language."
-			}
-		}
-	}
+    ],
+    "configuration": {
+      "title": "Translator Helper",
+      "properties": {
+        "variable-creator.api": {
+          "type": "string",
+          "default": "google",
+          "enum": [
+            "google"
+          ],
+          "enumDescriptions": [
+            "Google Translation API."
+          ],
+          "description": "Specify the api to translate the text."
+        },
+        "variable-creator.sourceLanguage": {
+          "type": "string",
+          "default": "ko",
+          "description": "The source language to be translated."
+        },
+        "variable-creator.targetLanguage": {
+          "type": "string",
+          "default": "en",
+          "description": "The target language."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
