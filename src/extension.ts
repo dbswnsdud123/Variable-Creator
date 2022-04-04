@@ -3,7 +3,6 @@
 // @ts-ignore
 import * as vscode from "vscode";
 import * as googleTranslate from "@vitalets/google-translate-api";
-
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -62,6 +61,8 @@ export class ProvieVariable implements vscode.CodeActionProvider {
     if (!this.isEnglish(document, range)) {
       return;
     }
+
+    console.log(namingGrammar(this.translateResult));
 
     return [this.createFix(document, range, this.translateResult)];
   }
@@ -188,4 +189,62 @@ class DocService {
         });
     }
   }
+}
+function namingGrammar(text: string): Array<string> {
+  let variableArray: Array<string> = [];
+
+  let textLength = text.length;
+
+  let camalCase = "",
+    pascalCase = "",
+    snakeCase = "",
+    constCase = "";
+
+  for (let i = 0; i < textLength; i++) {
+    if (i === 0) {
+      pascalCase += text[0].toLowerCase();
+    } else if (text[i] === " ") {
+      camalCase += text[i + 1].toUpperCase();
+      i++;
+    } else {
+      camalCase += text[i];
+    }
+  }
+
+  variableArray.push(camalCase);
+
+  for (let i = 0; i < textLength; i++) {
+    if (i === 0) {
+      pascalCase += text[0].toUpperCase();
+    } else if (text[i] === " ") {
+      pascalCase += text[i + 1].toUpperCase();
+      i++;
+    } else {
+      pascalCase += text[i];
+    }
+  }
+
+  variableArray.push(pascalCase);
+
+  for (let i = 0; i < textLength; i++) {
+    if (text[i] === " ") {
+      snakeCase += "_";
+    } else {
+      snakeCase += text[i].toLowerCase();
+    }
+  }
+
+  variableArray.push(snakeCase);
+
+  for (let i = 0; i < textLength; i++) {
+    if (text[i] === " ") {
+      constCase += "_";
+    } else {
+      constCase += text[i].toUpperCase();
+    }
+  }
+
+  variableArray.push(constCase);
+
+  return variableArray;
 }
