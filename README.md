@@ -1,70 +1,71 @@
-# variable-creator README
+```bash
+App
+├── Main.vue
+│   ├── SignUp.vue
+│   │   ├── SignUpMain.vue
+│   │   ├── SignUpActual.vue
+│   │   ├── Terms.vue
+│   │   └── AfterSignUp.vue
+│   ├── SignIn.vue
+│   │   ├── SignInMain.vue
+│   │   └── SignInActual.vue
+│   ├── Setting.vue
+│   ├── Profile.vue
+│   │   ├── MatchDetaile.vue
+│   │   └── RankChampion.vue
+│   └── Ingame.vue
+│       └──  Player.vue
+├── AutoSetting.vue
+│   ├── Default.vue
+│   │   └── ChampionCard.vue
+│   ├── AutoRuneGuide.vue
+│   ├── Champion.vue
+│   ├── Rune.vue
+│   ├── Spell.vue
+│   ├── Item.vue
+│   └── Skill.vue
+└── Updater.vue
+```
 
-This is the README for your extension "variable-creator". After writing up a brief description, we recommend including the following sections.
+<h2>Prop</h2>
 
-## Features
+```bash
+App
+├── Main.vue
+│   ├── SignUp.vue (Prop: signUpOverlay)
+│   │   └── AfterSignUp.vue (Prop: email)
+│   ├── SignIn.vue (Prop: signInOverlay)
+│   ├── Setting.vue (Prop: version, autoRun, autoRune, flashPosition, tray)
+│   ├── Profile.vue (Prop: inGame, showMatchDetail, showBestChampion, displayName)
+│   │   ├── MatchDetaile.vue (Prop: match, displayName, win, queueName, gameDuration, beforeTime)
+│   │   └── RankChampion.vue (Prop: matches, filteredMatches, selectedGameMode, showBestChampion)
+│   └── Ingame.vue (Prop: myTeam, theirTeam, gameID, currentPlayerInfo)
+│       └──  Player.vue (Prop: gameID, playerInfo, currentPlayerInfo, champID, champInfo, topChampionInfosInfo, playerDetailInfo, playerTierInfo, playerMatches, loading, index)
+├── AutoSetting.vue
+│   ├── Default.vue (Prop: inGame, championId, selectedChampionId)
+│   │   └── ChampionCard.vue (Prop: champion, show)
+│   ├── AutoRuneGuide.vue (Prop: selectedChampionId)
+│   ├── Champion.vue (Prop: championId, selectedChampionId, autoRune, championInfo, tierInfo, isThereInfo, loading, inGame)
+│   ├── Rune.vue (Prop: runeInfo, togglePickWin)
+│   ├── Spell.vue (Prop: inGame, championId, selectedChampionId, spell1, spell2, autoRune)
+│   ├── Item.vue (Prop: itemInfo, gameMode)
+│   └── Skill.vue (Prop: skillInfo, skillDetailInfo)
+└── Updater.vue
+```
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+<h2>Vuex</h2>
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+```bash
+App
+├── Main.vue (Vuex: assetURL, version, lolVersion)
+│   ├── Profile.vue (Vuex: assetURL, lolVersion, CHAMPIONS, SPELLS, RUNES, QUEUE_NAMES)
+│   │   ├── MatchDetaile.vue
+│   │   │   (Vuex: assetURL, lolVersion, CHAMPIONS, SPELLS, RUNES)
+│   │   └── RankChampion.vue (Vuex: assetURL, lolVersion, CHAMPIONS)
+│   └── Ingame.vue
+│       └──  Player.vue (Vuex: assetURL, lolVersion, CHAMPIONS)
+└── AutoSetting.vue (Vuex: cacheChampInfo, assetURL, CHAMPIONS, POSITION_NAMES)
+    ├── Default.vue (Vuex: tierInfos, assetURL, lolVersion)
+    ├── AutoRuneGuide.vue (Vuex: CHAMPIONS)
+    └── Rune.vue (Vuex: assetURL, lolVersion, RUNES)
+```
